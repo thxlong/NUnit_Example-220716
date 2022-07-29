@@ -13,7 +13,7 @@ namespace NUnit_Example_220716.TestCase
         public void Setup()
         {
             chromeDriver.Manage().Window.Maximize();
-            chromeDriver.Navigate().GoToUrl("https://csctrsnwk033.lsdev.fcg.com/trs/");
+            chromeDriver.Navigate().GoToUrl("https://pcs11/TRS/signin");
             chromeDriver.FindElement(By.XPath("//*[@id='details-button']")).Click();
             chromeDriver.FindElement(By.XPath("//*[@id='proceed-link']")).Click();
             Thread.Sleep(5000);
@@ -24,7 +24,7 @@ namespace NUnit_Example_220716.TestCase
         {
             string strCopyRight = "login-copy-right";
             loginPage = new LoginPage(chromeDriver);
-            loginPage.LoginPageAction("thuong1", "Sp1d3r2", strCopyRight);
+            loginPage.LoginPageAction("admin", "Test123");
             Thread.Sleep(5000);
             Console.WriteLine("Login successfully");
         }

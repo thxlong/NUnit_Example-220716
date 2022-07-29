@@ -13,10 +13,12 @@ namespace NUnit_Example_220716.Action
     public class LoginPage : AstractPage
     {
         ChromeDriver driver;
-        string inputUserName = "//*[contains(@id,'mat-input')]";
-        string inputPassword = "//*[contains(@id,'mat-input')]";
-        string continueLoginBtn = "html/body/trs-root/trs-signin/div/mat-list/div/form/mat-list-item[2]/div/button";
-        string loginBtn = "/html/body/trs-root/trs-signin/div/mat-list/div/form/mat-list-item[3]/div/button";
+        string inputUserName = "//input[@data-placeholder='Username']";
+        //string inputUserName = "//input[contains(@data-placeholder,'Username')]";
+        //string inputPassword = "//input[@data-placeholder='Password']";
+        string inputPassword = "//input[contains(@data-placeholder,'Password')]";
+        string SubmitBtn = "//button[@type=\"submit\"]";
+        //string loginBtn = "/html/body/trs-root/trs-signin/div/mat-list/div/form/mat-list-item[3]/div/button";
 
 
         public LoginPage(ChromeDriver driver)
@@ -36,18 +38,18 @@ namespace NUnit_Example_220716.Action
 
         public void performLogin()
         {
-            clickToElement(driver, loginBtn);
+            clickToElement(driver, SubmitBtn);
         }
 
         public void perFormContinue()
         {
-            clickToElement(driver, continueLoginBtn);
+            clickToElement(driver, SubmitBtn);
         }
 
 
-        public void LoginPageAction(string strUserName, string strPassword, string strCopyRight)
+        public void LoginPageAction(string strUserName, string strPassword)
         {
-            waitForControl(driver, strCopyRight);
+            waitForControlByXPath(driver, strUserName);
             //Fill user name
             this.setUserName(strUserName);
             //Perform continue

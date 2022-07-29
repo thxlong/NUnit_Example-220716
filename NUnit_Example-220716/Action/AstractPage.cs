@@ -26,13 +26,30 @@ namespace NUnit_Example_220716.Action
             element.SendKeys(value);
         }
 
-        public void waitForControl(IWebDriver driver, string locator)
+        public void waitForControlByXPath(IWebDriver driver, string locator)
         {
             try
             {
-                //By by = By.XPath(locator);
+                By by = By.XPath(locator);
+                //By by = By.ClassName(locator);
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(10000));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(locator)));
+            }
+            catch (Exception e)
+            {
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+
+        public void waitForControlByClass(IWebDriver driver, string locator)
+        {
+            try
+            {
                 By by = By.ClassName(locator);
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(1));
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(10000));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(locator)));
             }
             catch (Exception e)
             {
